@@ -19,7 +19,7 @@
         <activity
             android:name=".FormularioActivity"
             android:label="@string/title_activity_formulario"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
 
         </activity>
     </application>
