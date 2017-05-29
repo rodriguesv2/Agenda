@@ -2,10 +2,14 @@ package com.example.rubensrodrigues.agenda.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.rubensrodrigues.agenda.modelo.Aluno;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Rubens Rodrigues on 17/05/2017.
@@ -19,8 +23,8 @@ public class AlunoDAO extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE Alunos (id INTEGER PRIMARY KEY; nome TEXT NOT NULL, endereco TEXT, telefone TEXT, site TEXT, " +
-                "nota REAL;";
+        String sql = "CREATE TABLE Alunos (id INTEGER PRIMARY KEY, nome TEXT NOT NULL, endereco TEXT, telefone TEXT, site TEXT, " +
+                "nota REAL);";
         db.execSQL(sql);
     }
 
@@ -42,5 +46,27 @@ public class AlunoDAO extends SQLiteOpenHelper{
         dados.put("nota", aluno.getNota());
 
         db.insert("Alunos", null, dados);
+    }
+
+    public List<Aluno> buscaAlunos() {
+        String sql = "SELECT * FROM Alunos;";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(sql, null);
+
+        List<Aluno> alunos = new ArrayList<Aluno>();
+        while(c.moveToNext()){
+            Aluno aluno = new Aluno();
+            aluno.setId(c.getLong(c.getColumnIndex("id")));
+            aluno.setNome(c.getString(c.getColumnIndex("nome")));
+            aluno.setEndereco(c.getString(c.getColumnIndex("endereco")));
+            aluno.setTelefone(c.getString(c.getColumnIndex("telefone")));
+            aluno.setSite(c.getString(c.getColumnIndex("site")));
+            aluno.setNota(c.getDouble(c.getColumnIndex("nota")));
+
+            alunos.add(aluno);
+        }
+        c.close();
+
+        return alunos;
     }
 }
