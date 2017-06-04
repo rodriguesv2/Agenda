@@ -1,5 +1,6 @@
 package com.example.rubensrodrigues.agenda;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -26,6 +27,12 @@ public class FormularioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_formulario);
 
         helper = new FormularioHelper(this);
+
+        Intent intent = getIntent();
+        Aluno aluno = (Aluno) intent.getSerializableExtra("aluno");
+        if (aluno != null){
+            helper.preencheFormulario(aluno);
+        }
     }
 
     @Override
@@ -40,8 +47,13 @@ public class FormularioActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menu_formulario_ok:
                 Aluno aluno = helper.pegaAluno();
+
                 AlunoDAO dao = new AlunoDAO(this);
-                dao.insere(aluno);
+                if(aluno.getId() != null){
+                    dao.altera(aluno);
+                }else{
+                    dao.insere(aluno);
+                }
                 dao.close();
 
                 Toast.makeText(FormularioActivity.this, "Aluno "+ aluno.getNome() + " salvo!", Toast.LENGTH_SHORT).show();

@@ -1,10 +1,12 @@
 package com.example.rubensrodrigues.agenda.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by rubens on 17/05/17.
  */
 
-public class Aluno {
+public class Aluno implements Serializable{
     private Long id;
     private String nome;
     private String endereco;
