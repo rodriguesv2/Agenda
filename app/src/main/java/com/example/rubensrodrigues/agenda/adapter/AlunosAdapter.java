@@ -52,7 +52,7 @@ public class AlunosAdapter extends BaseAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = convertView;
         if(convertView == null) {
-            View view = inflater.inflate(R.layout.list_item, parent, false);
+            view = inflater.inflate(R.layout.list_item, parent, false);
         }
 
         TextView campoNome = (TextView) view.findViewById(R.id.item_nome);
