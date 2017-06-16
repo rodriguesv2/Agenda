@@ -13,7 +13,7 @@ import com.example.rubensrodrigues.agenda.dao.AlunoDAO;
 /**
  * Created by rubens on 16/06/17.
  */
-
+//Teste de commit
 public class SMSReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
