@@ -1,12 +1,13 @@
 package com.example.rubensrodrigues.agenda.modelo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by rubens on 27/06/17.
  */
 
-public class Prova {
+public class Prova implements Serializable{
 
     private String materia;
     private String data;
