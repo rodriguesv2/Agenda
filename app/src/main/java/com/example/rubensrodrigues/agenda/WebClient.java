@@ -1,5 +1,7 @@
 package com.example.rubensrodrigues.agenda;
 
+import android.support.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.HttpURLConnection;
@@ -13,8 +15,19 @@ import java.util.Scanner;
 
 public class WebClient {
     public String post(String json){
+        String endereco = "https://www.caelum.com.br/mobile";
+        realizaConexao(json, endereco);
+    }
+
+    public void insere(String json) {
+        String endereco = "https://192.168.0.249:8080/api/aluno";
+        realizaConexao(json, endereco);
+    }
+
+    @Nullable
+    private String realizaConexao(String json, String endereco) {
         try {
-            URL url = new URL("https://www.caelum.com.br/mobile");
+            URL url = new URL(endereco);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("Content-type", "application/json");
             connection.setRequestProperty("Accept", "application/json");

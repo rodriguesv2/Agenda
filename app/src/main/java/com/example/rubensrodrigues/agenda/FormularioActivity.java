@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.rubensrodrigues.agenda.dao.AlunoDAO;
 import com.example.rubensrodrigues.agenda.modelo.Aluno;
+import com.example.rubensrodrigues.agenda.tasks.InsereAlunoTask;
 
 import java.io.File;
 
@@ -86,6 +87,8 @@ public class FormularioActivity extends AppCompatActivity {
                     dao.insere(aluno);
                 }
                 dao.close();
+
+                new InsereAlunoTask(aluno);
 
                 Toast.makeText(FormularioActivity.this, "Aluno "+ aluno.getNome() + " salvo!", Toast.LENGTH_SHORT).show();
 
