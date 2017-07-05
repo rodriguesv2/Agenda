@@ -31,7 +31,7 @@ public class AlunoConverter {
         return js.toString();
     }
 
-    public String converteParaJSONCompleto(Aluno aluno) {
+    /*public String converteParaJSONCompleto(Aluno aluno) {
         JSONStringer js = new JSONStringer();
 
         try {
@@ -49,5 +49,5 @@ public class AlunoConverter {
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
 }
