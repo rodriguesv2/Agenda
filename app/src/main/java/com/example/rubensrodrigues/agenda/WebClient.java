@@ -16,11 +16,11 @@ import java.util.Scanner;
 public class WebClient {
     public String post(String json){
         String endereco = "https://www.caelum.com.br/mobile";
-        realizaConexao(json, endereco);
+        return realizaConexao(json, endereco);
     }
 
     public void insere(String json) {
-        String endereco = "https://192.168.0.249:8080/api/aluno";
+        String endereco = "http://192.168.0.40:8080/api/aluno";
         realizaConexao(json, endereco);
     }
 
