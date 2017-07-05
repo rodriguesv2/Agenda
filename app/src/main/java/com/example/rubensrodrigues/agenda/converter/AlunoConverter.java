@@ -36,11 +36,13 @@ public class AlunoConverter {
 
         try {
             js.object()
+                    .key("id").value(aluno.getId())
                     .key("nome").value(aluno.getNome())
                     .key("endereco").value(aluno.getEndereco())
                     .key("site").value(aluno.getSite())
                     .key("telefone").value(aluno.getTelefone())
                     .key("nota").value(aluno.getNota())
+                    .key("caminhoFoto").value(aluno.getCaminhoFoto())
                     .endObject();
             return js.toString();
         } catch (JSONException e) {
