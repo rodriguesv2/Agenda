@@ -19,7 +19,7 @@ public class WebClient {
         return realizaConexao(json, endereco);
     }
 
-    /*public void insere(String json) {
+    /*public void sincroniza(String json) {
         String endereco = "http://192.168.0.40:8080/api/aluno";
         realizaConexao(json, endereco);
     }*/
