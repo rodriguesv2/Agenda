@@ -1,5 +1,6 @@
 package com.example.rubensrodrigues.agenda.services;
 
+import com.example.rubensrodrigues.agenda.dto.AlunoSync;
 import com.example.rubensrodrigues.agenda.modelo.Aluno;
 
 import java.util.List;
@@ -19,5 +20,5 @@ public interface AlunoService {
     Call<Void> insere(@Body Aluno aluno);
 
     @GET("aluno")
-    Call<List<Aluno>> lista();
+    Call<AlunoSync> lista();
 }
