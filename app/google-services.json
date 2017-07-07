@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "689929972417",
+    "firebase_url": "https://agenda-sync-b5555.firebaseio.com",
+    "project_id": "agenda-sync-b5555",
+    "storage_bucket": "agenda-sync-b5555.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689929972417:android:da540b2082153427",
+        "android_client_info": {
+          "package_name": "com.example.rubensrodrigues.agenda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689929972417-d7gq6kv0nqrhv622gcts8eg9kdmlig9g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rubensrodrigues.agenda",
+            "certificate_hash": "ef99a3e9893a14ea55edbd2dd6b41e33a7fe7197"
+          }
+        },
+        {
+          "client_id": "689929972417-s350i60tkefe6hol0f4qfhv1s39a8pok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8RNKPjRU4qL8xrKJMpTbbKfP5l-7jIik"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689929972417-s350i60tkefe6hol0f4qfhv1s39a8pok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,11 +7,19 @@
     tools:context="com.example.rubensrodrigues.agenda.ListaAlunosActivity"
     android:orientation="vertical">
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_lista_aluno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lista_alunos">
     </ListView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
     <Button
         android:layout_width="56dp"
