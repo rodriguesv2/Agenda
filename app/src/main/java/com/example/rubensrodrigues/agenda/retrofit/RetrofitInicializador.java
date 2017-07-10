@@ -1,6 +1,7 @@
 package com.example.rubensrodrigues.agenda.retrofit;
 
 import com.example.rubensrodrigues.agenda.services.AlunoService;
+import com.example.rubensrodrigues.agenda.services.DispositivoService;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -31,5 +32,9 @@ public class RetrofitInicializador {
 
     public AlunoService getAlunoService() {
         return retrofit.create(AlunoService.class);
+    }
+
+    public DispositivoService getDispositivoService() {
+        return retrofit.create(DispositivoService.class);
     }
 }
