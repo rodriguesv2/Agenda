@@ -20,8 +20,13 @@ import android.widget.Toast;
 import com.example.rubensrodrigues.agenda.adapter.AlunosAdapter;
 import com.example.rubensrodrigues.agenda.dao.AlunoDAO;
 import com.example.rubensrodrigues.agenda.dto.AlunoSync;
+import com.example.rubensrodrigues.agenda.event.AtualizaListaAlunoEvent;
 import com.example.rubensrodrigues.agenda.modelo.Aluno;
 import com.example.rubensrodrigues.agenda.retrofit.RetrofitInicializador;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -38,6 +43,10 @@ public class ListaAlunosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
+
+        EventBus eventBus = EventBus.getDefault();
+        eventBus.register(this);
+
 
         listaAlunos = (ListView)findViewById(R.id.lista_alunos);
         swipe = (SwipeRefreshLayout) findViewById(R.id.swipe_lista_aluno);
@@ -84,6 +93,11 @@ public class ListaAlunosActivity extends AppCompatActivity {
         
         AlunosAdapter adapter = new AlunosAdapter(this, alunos);
         listaAlunos.setAdapter(adapter);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void atualizaListaAlunoEvent(AtualizaListaAlunoEvent event){
+        carregaLista();
     }
 
     @Override

@@ -42,6 +42,7 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:10.2.4'
     compile 'com.google.gms:google-services:3.0.0'
     testCompile 'junit:junit:4.12'
+    compile 'org.greenrobot:eventbus:3.0.0'
 }
 
 

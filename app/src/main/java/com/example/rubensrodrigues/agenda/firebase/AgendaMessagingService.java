@@ -4,9 +4,12 @@ import android.util.Log;
 
 import com.example.rubensrodrigues.agenda.dao.AlunoDAO;
 import com.example.rubensrodrigues.agenda.dto.AlunoSync;
+import com.example.rubensrodrigues.agenda.event.AtualizaListaAlunoEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 import java.util.Map;
@@ -36,6 +39,8 @@ public class AgendaMessagingService extends FirebaseMessagingService {
                 AlunoDAO alunoDAO = new AlunoDAO(this);
                 alunoDAO.sincroniza(alunoSync.getAlunos());
                 alunoDAO.close();
+                EventBus eventBus = EventBus.getDefault();
+                eventBus.post(new AtualizaListaAlunoEvent());
             } catch (IOException e) {
                 e.printStackTrace();
             }
