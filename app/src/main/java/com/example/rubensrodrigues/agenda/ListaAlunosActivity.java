@@ -19,10 +19,10 @@ import android.widget.Toast;
 
 import com.example.rubensrodrigues.agenda.adapter.AlunosAdapter;
 import com.example.rubensrodrigues.agenda.dao.AlunoDAO;
-import com.example.rubensrodrigues.agenda.dto.AlunoSync;
 import com.example.rubensrodrigues.agenda.event.AtualizaListaAlunoEvent;
 import com.example.rubensrodrigues.agenda.modelo.Aluno;
 import com.example.rubensrodrigues.agenda.retrofit.RetrofitInicializador;
+import com.example.rubensrodrigues.agenda.sinc.AlunoSincronizador;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -36,6 +36,7 @@ import retrofit2.Response;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
+    private final AlunoSincronizador sincronizador = new AlunoSincronizador(this);
     private ListView listaAlunos;
     private SwipeRefreshLayout swipe;
 
@@ -54,7 +55,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                buscaAlunos();
+                sincronizador.buscaAlunos();
             }
         });
 
@@ -78,7 +79,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         });
 
         registerForContextMenu(listaAlunos);
-        buscaAlunos();
+        sincronizador.buscaAlunos();
     }
 
     private void carregaLista() {
@@ -97,7 +98,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void atualizaListaAlunoEvent(AtualizaListaAlunoEvent event){
-        carregaLista();
+        if(swipe.isRefreshing()) swipe.setRefreshing(false);
+            carregaLista();
     }
 
     @Override
@@ -110,25 +112,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     private void buscaAlunos() {
-        Call<AlunoSync> call = new RetrofitInicializador().getAlunoService().lista();
 
-        call.enqueue(new Callback<AlunoSync>() {
-            @Override
-            public void onResponse(Call<AlunoSync> call, Response<AlunoSync> response) {
-                AlunoSync alunoSync = response.body();
-                AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
-                dao.sincroniza(alunoSync.getAlunos());
-                dao.close();
-                carregaLista();
-                swipe.setRefreshing(false);
-            }
-
-            @Override
-            public void onFailure(Call<AlunoSync> call, Throwable t) {
-                Log.e("onFailure: ", t.getMessage());
-                swipe.setRefreshing(false);
-            }
-        });
+        sincronizador.buscaAlunos();
     }
 
     @Override
